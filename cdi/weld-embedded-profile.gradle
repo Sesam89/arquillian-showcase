@@ -1,0 +1,7 @@
+dependencies {
+   testRuntime group: 'org.jboss.arquillian.container', name: 'arquillian-weld-ee-embedded-1.1', version: '1.0.0.Alpha3'
+   testRuntime group: 'org.jboss.spec', name: 'jboss-javaee-6.0', version: libraryVersions.jbossJavaeeSpec
+   testRuntime group: 'org.jboss.weld', name: 'weld-core', version: libraryVersions.weld
+   testRuntime group: 'org.slf4j', name: 'slf4j-log4j12', version: libraryVersions.slf4j
+   testRuntime group: 'log4j', name: 'log4j', version: libraryVersions.log4j
+}

@@ -1,0 +1,4 @@
+dependencies {
+   testRuntime group: 'org.jboss.arquillian.container', name: 'arquillian-glassfish-embedded-3', version: libraryVersions.arquillian
+   testRuntime group: 'org.glassfish.extras', name: 'glassfish-embedded-all', version: libraryVersions.glassfish
+}

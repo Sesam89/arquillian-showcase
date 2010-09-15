@@ -1,0 +1,39 @@
+apply plugin: JavaPlugin
+
+buildDir = 'target/gradle-build'
+
+libraryVersions = [
+   junit: '4.8.1', arquillian: '1.0.0.Alpha4', jbossJavaeeSpec: '1.0.0.Beta7', weld: '1.0.1-Final',
+   slf4j: '1.5.8', log4j: '1.2.14', jbossas: '6.0.0.20100721-M4', glassfish: '3.0.1-b20', cdi: '1.0-SP1'
+]
+
+if (hasProperty('profile')) {
+   apply from: profile + '-profile.gradle'
+}
+
+repositories {
+   mavenCentral()
+   mavenRepo urls: 'http://repository.jboss.org/nexus/content/groups/public/'
+   mavenRepo urls: 'https://repository.jboss.org/nexus/content/repositories/deprecated/'
+}
+
+configurations {
+   compileOnly
+}
+
+dependencies {
+   // replace javax.enterprise:cdi-api with group: 'org.jboss.spec', name: 'jboss-javaee-6.0', version: libraryVersions.jbossJavaeeSpec to compile against full Java EE API
+   compileOnly group: 'javax.enterprise', name: 'cdi-api', version: libraryVersions.cdi
+
+   testCompile group: 'junit', name: 'junit', version: libraryVersions.junit
+   testCompile group: 'org.jboss.arquillian', name: 'arquillian-junit', version: libraryVersions.arquillian
+}
+
+sourceSets {
+   main {
+      compileClasspath = configurations.compile + configurations.compileOnly
+   }
+   test {
+      compileClasspath = compileClasspath + configurations.compileOnly
+   }
+}
